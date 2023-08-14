@@ -15,7 +15,7 @@ elem.after(clone);
 
 
 	
-	
+		
 		<div class="headerIcons" id="headerIcons">
 			<svg
 				id="angular_svg__Layer_1"
@@ -397,6 +397,8 @@ elem.after(clone);
   position: fixed;
   top: 50px;
   left: 0px;
+  transition: all ease-in 1.1s;
+  
 }
 
 .headerIcons .svgIcon {
@@ -406,7 +408,7 @@ elem.after(clone);
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
   height: 2em;
-  transition: all ease 0.4s;
+
 }
 
 .headerIcons .svgIcon:hover {
@@ -461,19 +463,29 @@ elem.after(clone);
 
 :global(.headerIcons.secondary){
 
-	position: fixed !important;
+	position: absolute !important;
     left: -270px !important;
     top: 183px !important;
-    filter: grayscale(100%);
+    /* filter: grayscale(100%); */
     height: 7em;
-    opacity: 0.6 !important;
+    /* opacity: 0.6 !important; */
     transform: scale(1.1);
-    transition: all ease 0.4s;
+   
 	
 }
 
+:global(.headerIcons.rotate){
+	transition: all ease-in 1.1s;
 
+	transform: scale(1.1) rotateX(50deg) rotateY(2deg) rotateZ(-30deg) translateX(0px) translateY(0px) translateZ(0px) skewX(0deg) skewY(0deg);    margin-top: 347px;
+    margin-left: 205px;
+    z-index: 99;
 
+}
+:global(#cube-wrapper){
+	/* perspective: 150px;
+  perspective-origin: 49% 50%; */
+}
 
 
 

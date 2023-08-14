@@ -1,9 +1,18 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
+<<<<<<< Updated upstream
 	import emailjs from '@emailjs/browser';
 
 	let sendemailMessage = '';
 
+=======
+	import { onMount, onDestroy } from 'svelte';
+	import emailjs from '@emailjs/browser';
+	import { visibleMessage } from '$lib/stores/store.js';
+	import { browser } from 'svelte-browser';
+	let sendemailMessage = '';
+
+>>>>>>> Stashed changes
 	function sendEmail(e) {
 		emailjs.sendForm('service_cqbrb97', 'template_n68bgz9', e, 'DgeB577nZVU1TEiic').then(
 			(result) => {
@@ -77,6 +86,50 @@
 			//   console.log('Invalid Form');
 		}
 	}
+<<<<<<< Updated upstream
+=======
+
+	onMount(() => {
+		$visibleMessage = 'none';
+
+		if (browser) {
+			const body = document.getElementsByTagName('body')[0];
+			body.classList.add('blue');
+
+			const video = document.getElementsByTagName('video')[0];
+			video.play();
+
+			const icons = document.getElementsByClassName('headerIcons');
+			icons[0].classList.add('rotate');
+			icons[1].classList.add('rotate');
+			
+
+		}
+	});
+	onDestroy(() => {
+		if (browser) {
+			const body = document.getElementsByTagName('body')[0];
+			body.classList.remove('blue');
+
+			
+			let v = document.getElementsByTagName('video')[0]; 
+			var reverse = setInterval(
+				function() {   v.currentTime = v.currentTime - 0.1;
+				if(v.currentTime==0){clearInterval(reverse)}
+				 },
+				 100);
+
+
+				 const icons = document.getElementsByClassName('headerIcons');
+			icons[0].classList.remove('rotate');
+			icons[1].classList.remove('rotate');
+			// const video = document.getElementsByTagName('video')[0];
+			// video.play();
+		}
+
+		$visibleMessage = 'initial';
+	});
+>>>>>>> Stashed changes
 </script>
 
 <svelte:head>
@@ -85,6 +138,7 @@
 </svelte:head>
 
 <section class="section kontakt" transition:fade>
+<<<<<<< Updated upstream
 	<div class="mx-auto m-8 relative sm:w-auto p-10 formContact">
 
 
@@ -94,161 +148,130 @@
 
 
 
+=======
+	<div class="mx-auto m-8 relative sm:w-auto max-w-2xl p-10 formContact">
+>>>>>>> Stashed changes
 		<div>
-			<div class="w-full p-8 my-4 md:px-10 lg:w-9/12 lg:pl-20 lg:pr-20 mr-auto rounded-2xl shadow-2xl boxKontakt">
+			<div
+				class="w-full p-8 my-4 md:px-10 lg:w-9/12 lg:pl-5 lg:pr-5 mr-auto rounded-2xl shadow-2xl boxKontakt"
+			>
+				<div class="flex">
+					<h1 class="text-gray-600 text-lg italic">
+						Podoba się?<br /><span class="text-sm">Zostaw wiadomość!</span>
+					</h1>
+				</div>
 
+				<br /><br />
 
-			<div class="flex">
-				<h1 class="text-gray-600 text-lg italic">
-					Podoba się?<br /><span class="text-sm">Zostaw wiadomość!</span>
-				</h1>
-			</div>
-
-			<br><br>
-
-			<form id="emailForm" class="w-full max-w-lg" on:submit|preventDefault={onSubmit} transition:fade>
-				<div class="flex flex-wrap -mx-3 mb-6">
-				  <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-					<!-- <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+				<form id="emailForm" class="w-full" on:submit|preventDefault={onSubmit} transition:fade>
+					<div class="flex flex-wrap -mx-3 mb-6">
+						<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+							<!-- <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
 					  Imię
 					</label> -->
-					<input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
-					
-						type="text"
-						id="Imie"
-						name="Imie"
-						value=""
-						placeholder="Imie"
-					
-					>
-					
-					<p class="text-red-500 text-xs italic" transition:fade>
-					{#if errors.Imie && errors.Imie.required}
-					Imie wymagane
-					{/if}
-					</p>
+							<input
+								class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+								type="text"
+								id="Imie"
+								name="Imie"
+								value=""
+								placeholder="Imie"
+							/>
 
+							<p class="text-red-500 text-xs italic" transition:fade>
+								{#if errors.Imie && errors.Imie.required}
+									Imie wymagane
+								{/if}
+							</p>
+						</div>
+						<div class="w-full md:w-1/2 px-3">
+							<input
+								class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+								type="text"
+								id="Nazwisko"
+								name="Nazwisko"
+								value=""
+								placeholder="Nazwisko"
+							/>
 
-
-				  </div>
-				  <div class="w-full md:w-1/2 px-3">
-					
-					<input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
-					
-						type="text"
-						id="Nazwisko"
-						name="Nazwisko"
-						value=""
-						placeholder="Nazwisko"
-					
-					>
-
-					
-
-					<p class="text-red-500 text-xs italic" transition:fade>
-						{#if errors.Nazwisko && errors.Nazwisko.required}
-						Nazwisko wymagane
-						{/if}
-						</p>
-					
-
-				</div>
-				</div>
-				<div class="flex flex-wrap -mx-3 mb-6">
-				  <div class="w-full px-3">
-					<!-- <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+							<p class="text-red-500 text-xs italic" transition:fade>
+								{#if errors.Nazwisko && errors.Nazwisko.required}
+									Nazwisko wymagane
+								{/if}
+							</p>
+						</div>
+					</div>
+					<div class="flex flex-wrap -mx-3 mb-6">
+						<div class="w-full px-3">
+							<!-- <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
 					  Email
 					</label> -->
-					<input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
-					
-					type="email"
-						id="email"
-						name="email"
-						value=""
-						placeholder="Email"
-					
-					>
+							<input
+								class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+								type="email"
+								id="email"
+								name="email"
+								value=""
+								placeholder="Email"
+							/>
 
-					<p class="text-red-500 text-xs italic" transition:fade>
-						{#if errors.email && errors.email.required}
-						adres email konieczny
-						{/if}
-						</p>
+							<p class="text-red-500 text-xs italic" transition:fade>
+								{#if errors.email && errors.email.required}
+									adres email konieczny
+								{/if}
+							</p>
 
-
-
-					<p class="text-gray-600 text-xs italic">Podaj proszę adres email. Będzie łatwiej o kontakt</p>
-				  </div>
-				</div>
-				<div class="flex flex-wrap -mx-3 mb-6">
-					<div class="w-full px-3">
-					
-
-					<textarea
-					placeholder="Wiadomość"
-					id="message"
-					name="message"
-					value=""
-					class="w-full h-32 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-				/>
-					
-
-					
-					
-
-
-					<p class="text-red-500 text-xs italic" transition:fade>
-						{#if errors.message && errors.message.required}
-						Wiadomość jest pusta!
-						{/if}
-						</p>
-
-					<!-- <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Albuquerque"> -->
-				  </div>
-				  <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-				
-					
-				  </div>
-				  <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-					<button
-							type="submit"
-							class="uppercase text-sm font-bold tracking-wide text-gray-100 p-3 rounded-lg w-full
-					  focus:outline-none focus:shadow-outline backgr_primary"
-						>
-							Wyślij
-						</button>
+							<p class="text-gray-600 text-xs italic">
+								Podaj proszę adres email. Będzie łatwiej o kontakt
+							</p>
+						</div>
 					</div>
-					
-				</div>
-				<div class="text-gray-600 text-lg italic succesMessage" transition:fade>{sendemailMessage}</div>
-			  </form>
+					<div class="flex flex-wrap -mx-3 mb-6">
+						<div class="w-full px-3">
+							<textarea
+								placeholder="Wiadomość"
+								id="message"
+								name="message"
+								value=""
+								class="w-full h-32 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+							/>
 
+							<p class="text-red-500 text-xs italic" transition:fade>
+								{#if errors.message && errors.message.required}
+									Wiadomość jest pusta!
+								{/if}
+							</p>
 
-
-
-
-
-
-				
+							<!-- <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Albuquerque"> -->
+						</div>
+						<div class="w-full md:w-1/3 px-3 mb-6 md:mb-0" />
+						<div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+							<button
+								type="submit"
+								class="uppercase text-sm font-bold tracking-wide text-gray-100 p-3 rounded-lg w-full
+					  focus:outline-none focus:shadow-outline backgr_primary"
+							>
+								Wyślij
+							</button>
+						</div>
+					</div>
+					<div class="text-gray-600 text-lg italic succesMessage" transition:fade>
+						{sendemailMessage}
+					</div>
+				</form>
 
 				<!-- <div class="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5"> -->
-				
-				
 			</div>
 		</div>
 	</div>
 </section>
 
 <style>
-	
-
 	form > div {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
 	}
-
-	
 
 	:global(.error-message) {
 		color: tomato;

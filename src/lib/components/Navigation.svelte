@@ -1,7 +1,13 @@
 <script>
 	import logotype from '$lib/images/logotype.svg';
 	import logotype_safari from '$lib/images/logotype_safari.svg';
+<<<<<<< Updated upstream
 	import messageIcon from '$lib/images/messageIcon.svg';
+=======
+	import { LottiePlayer } from '@lottiefiles/svelte-lottie-player';
+	import { browser } from '$app/environment';
+	// import messageIcon from '$lib/images/messageIcon.svg';
+>>>>>>> Stashed changes
 	// import clientsIcon from '$lib/images/clientsIcon.svg';
 	import { scale } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
@@ -34,11 +40,39 @@
 	}
 
 	onMount(() => {
+<<<<<<< Updated upstream
 		portfolios_all.subscribe((value) => {
 			_portfolios = value;
+=======
+
+		console.log(typeof animation.getLottie())
+
+		
+
+		if(animation.getLottie()=="object"){
+			animation.addEventListener('complete', () => {
+			animation.setLooping(false);
+			animation.seek(195);
+>>>>>>> Stashed changes
 		});
+
+		}
 	});
 
+<<<<<<< Updated upstream
+=======
+	function mouseLeave() {
+		animation.getLottie()
+		animation.play();
+		animation.setLooping(false);
+	}
+	function mouseEnter() {
+		animation.getLottie()
+		animation.play();
+		animation.setLooping(true);
+	}
+
+>>>>>>> Stashed changes
 	function on_key_down(event) {
 		//console.log(event);
 		if (event.repeat) return;
@@ -328,6 +362,23 @@
 {/if}
 
 <style>
+<<<<<<< Updated upstream
+=======
+
+	.menu_title_mobile{
+
+		position: relative;
+		top:80px;
+	}
+	
+	.menu_centered_mobile {
+		text-align: center;
+		margin-bottom: 40px;
+		display: inline-flex;
+		padding:30px;
+	}
+
+>>>>>>> Stashed changes
 	.logo_div {
 		transform: scale(0.7);
 		transition: all 0.5s ease;
